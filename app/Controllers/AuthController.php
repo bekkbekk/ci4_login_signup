@@ -112,6 +112,13 @@ class AuthController extends BaseController
 
     public function doRegister()
     {
+        $sysParams = new SystemParameterModel();
+
+        $genderList = $sysParams->where('category', 'gender')->where('deleted_at', null)->findColumn('id');
+        $maritalStatusList = $sysParams->where('category', 'marital_status')->where('deleted_at', null)->findColumn('id');
+        $jobTitleList = $sysParams->where('category', 'job_title')->where('deleted_at', null)->findColumn('id');
+        $religionList = $sysParams->where('category', 'religion')->where('deleted_at', null)->findColumn('id');
+
         $rules = [
             'firstname' => [
                 'rules'  => 'required',
@@ -126,27 +133,27 @@ class AuthController extends BaseController
                 ]
             ],
             'marital_status' => [
-                // 'rules'  => 'greater_than[0]',
+                'rules'  => "permit_empty|".(is_array($maritalStatusList) ? "in_list[".implode(',', $maritalStatusList)."]" : ""),
                 'errors' => [
-                    'greater_than' => 'Marital status is required.',
-                ]
-            ],
-            'job_title' => [
-                // 'rules'  => 'greater_than[0]',
-                'errors' => [
-                    'greater_than' => 'Job title is required.',
+                    'in_list' => 'Invalid marital status.',
                 ]
             ],
             'gender' => [
-                // 'rules'  => 'greater_than[0]',
+                'rules'  => "permit_empty|".(is_array($genderList) ? "in_list[".implode(',', $genderList)."]" : ""),
                 'errors' => [
-                    'greater_than' => 'Gender is required.',
+                    'in_list' => 'Invalid gender.',
+                ]
+            ],
+            'job_title' => [
+                'rules'  => "permit_empty|".(is_array($jobTitleList) ? "in_list[".implode(',', $jobTitleList)."]" : ""),
+                'errors' => [
+                    'in_list' => 'Invalid job title.',
                 ]
             ],
             'religion' => [
-                // 'rules'  => 'greater_than[0]',
+                'rules'  => "permit_empty|".(is_array($religionList) ? "in_list[".implode(',', $religionList)."]" : ""),
                 'errors' => [
-                    'greater_than' => 'Religion is required.',
+                    'in_list' => 'Invalid religion.',
                 ]
             ],
             'email' => [

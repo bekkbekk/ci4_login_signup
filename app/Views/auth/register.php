@@ -44,7 +44,7 @@
                     <div class="input_field">
                         <span><i class="fa-solid fa-person"></i></span>
                         <select id="marital_status" name="marital_status">
-                            <option value="0">Prefer not to say</option>
+                            <option value="">Prefer not to say</option>
                             <?php foreach ($parameters as $param) : ?>
                                 <?php if ($param['category'] === 'marital_status') : ?>
                                     <option value="<?= $param['id'] ?>"><?= $param['parameter_name'] ?></option>
@@ -57,7 +57,7 @@
                     <div class="input_field">
                         <span><i class="fa-solid fa-user-doctor"></i></span>
                         <select id="job_title" name="job_title">
-                            <option value="0">Prefer not to say</option>
+                            <option value="">Prefer not to say</option>
                             <?php foreach ($parameters as $param) : ?>
                                 <?php if ($param['category'] === 'job_title') : ?>
                                     <option value="<?= $param['id'] ?>"><?= $param['parameter_name'] ?></option>
@@ -70,7 +70,7 @@
                     <div class="input_field">
                         <span><i class="fa-solid fa-venus-mars"></i></span>
                         <select id="gender" name="gender">
-                            <option value="0">Prefer not to say</option>
+                            <option value="">Prefer not to say</option>
                             <?php foreach ($parameters as $param) : ?>
                                 <?php if ($param['category'] === 'gender') : ?>
                                     <option value="<?= $param['id'] ?>"><?= $param['parameter_name'] ?></option>
@@ -83,7 +83,7 @@
                     <div class="input_field">
                         <span><i class="fa-solid fa-church"></i></span>
                         <select id="religion" name="religion">
-                            <option value="0">Prefer not to say</option>
+                            <option value="">Prefer not to say</option>
                             <?php foreach ($parameters as $param) : ?>
                                 <?php if ($param['category'] === 'religion') : ?>
                                     <option value="<?= $param['id'] ?>"><?= $param['parameter_name'] ?></option>
