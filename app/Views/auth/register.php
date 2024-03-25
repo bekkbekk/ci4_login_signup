@@ -79,7 +79,7 @@
                         </select>
                     </div>
 
-                    <label for="religion">Religion </label>
+                    <!-- <label for="religion">Religion </label>
                     <div class="input_field">
                         <span><i class="fa-solid fa-church"></i></span>
                         <select id="religion" name="religion">
@@ -90,7 +90,7 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
-                    </div>
+                    </div> -->
 
                     <label for="email">Email <span class="text-danger fw-semibold">*</span></label>
                     <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>

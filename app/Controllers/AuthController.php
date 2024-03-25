@@ -117,7 +117,7 @@ class AuthController extends BaseController
         $genderList = $sysParams->where('category', 'gender')->where('deleted_at', null)->findColumn('id');
         $maritalStatusList = $sysParams->where('category', 'marital_status')->where('deleted_at', null)->findColumn('id');
         $jobTitleList = $sysParams->where('category', 'job_title')->where('deleted_at', null)->findColumn('id');
-        $religionList = $sysParams->where('category', 'religion')->where('deleted_at', null)->findColumn('id');
+        // $religionList = $sysParams->where('category', 'religion')->where('deleted_at', null)->findColumn('id');
 
         $rules = [
             'firstname' => [
@@ -150,12 +150,12 @@ class AuthController extends BaseController
                     'in_list' => 'Invalid job title.',
                 ]
             ],
-            'religion' => [
-                'rules'  => "permit_empty|".(is_array($religionList) ? "in_list[".implode(',', $religionList)."]" : ""),
-                'errors' => [
-                    'in_list' => 'Invalid religion.',
-                ]
-            ],
+            // 'religion' => [
+            //     'rules'  => "permit_empty|".(is_array($religionList) ? "in_list[".implode(',', $religionList)."]" : ""),
+            //     'errors' => [
+            //         'in_list' => 'Invalid religion.',
+            //     ]
+            // ],
             'email' => [
                 'rules'  => 'required|valid_email|is_unique[user.email_address]',
                 'errors' => [
@@ -191,6 +191,10 @@ class AuthController extends BaseController
             'lastname' => $this->request->getVar('lastname'),
             'email_address' => $this->request->getVar('email'),
             'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'marital_status' => empty($this->request->getVar('marital_status')) ? null : $this->request->getVar('marital_status'),
+            'gender' => empty($this->request->getVar('gender')) ? null : $this->request->getVar('gender'),
+            'job_title_id' => empty($this->request->getVar('job_title')) ? null : $this->request->getVar('job_title'),
+            // 'religion' => $this->request->getVar('religion'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
